@@ -1,4 +1,4 @@
-package ru.ldwx.model;
+package ru.ldwx.notes.model;
 
 import java.time.LocalDateTime;
 
