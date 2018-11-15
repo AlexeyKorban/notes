@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Repository
 public class NoteRepositoryImpl implements NoteRepository{
     private Map<Integer, Note> storage = new ConcurrentHashMap<>();
-    private AtomicInteger idGenerator = new AtomicInteger(0);
+    private AtomicInteger idGenerator = new AtomicInteger(10001);
 
     @Override
     public Note save(Note note) {
