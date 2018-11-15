@@ -2,25 +2,16 @@ package ru.ldwx.notes.model;
 
 import java.time.LocalDateTime;
 
-public class Note {
-    private int id;
+public class Note extends AbstractBaseEntity{
     private String content;
     private LocalDateTime created;
     private boolean done;
 
     public Note(int id, String content, LocalDateTime created, boolean done) {
-        this.id = id;
+        super(id);
         this.content = content;
         this.created = created;
         this.done = done;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getContent() {
