@@ -4,6 +4,7 @@ import ru.ldwx.notes.model.Note;
 
 import java.time.LocalDateTime;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static ru.ldwx.notes.model.AbstractBaseEntity.START_SEQ;
 
 public class TestData {
@@ -14,4 +15,12 @@ public class TestData {
     public static final Note NOTE1 = new Note(NOTE1_ID, "Тесты это прекрасно", LocalDateTime.now(), false);
     public static final Note NOTE2 = new Note(NOTE2_ID, "Тесты это отлично", LocalDateTime.of(2018, 11, 15, 15, 0), false);
     public static final Note NOTE3 = new Note(NOTE3_ID, "Тесты это полезно", LocalDateTime.of(2018, 11, 15, 16, 0), true);
+
+    public static void assertMatch(Note actual, Note expected) {
+        assertThat(actual).isEqualToIgnoringGivenFields(expected, "created");
+    }
+
+    public static void assertMatch(Iterable<Note> actual, Iterable<Note> expected) {
+        assertThat(actual).usingElementComparatorIgnoringFields("created").isEqualTo(expected);
+    }
 }

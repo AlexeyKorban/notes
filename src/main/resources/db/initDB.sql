@@ -8,5 +8,5 @@ CREATE TABLE notes
   id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   content          VARCHAR                 NOT NULL,
   created          TIMESTAMP DEFAULT now() NOT NULL,
-  done             BOOL DEFAULT TRUE       NOT NULL
+  done             BOOL DEFAULT FALSE       NOT NULL
 );
