@@ -1,38 +1,33 @@
 package ru.ldwx.notes.repository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.ldwx.notes.model.Note;
 
 import java.util.Collection;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class NoteRepositoryImpl implements NoteRepository{
-    private Map<Integer, Note> storage = new ConcurrentHashMap<>();
-    private AtomicInteger idGenerator = new AtomicInteger(10001);
+    @Autowired
+    private CrudNoteRepository repository;
 
     @Override
     public Note save(Note note) {
-        if (note.isNew()) {
-            note.setId(idGenerator.incrementAndGet());
-        }
-        return storage.put(note.getId(), note);
+        return repository.save(note);
     }
 
     @Override
     public boolean delete(int id) {
-        return storage.remove(id) != null;
+        return repository.delete(id) != 0;
     }
 
     @Override
     public Note get(int id) {
-        return storage.get(id);
+        return repository.findById(id).orElse(null);
     }
 
     @Override
     public Collection<Note> getAll() {
-        return storage.values();
+        return repository.findAll();
     }
 }

@@ -1,13 +1,20 @@
 package ru.ldwx.notes.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "notes")
 public class Note extends AbstractBaseEntity{
     private String content;
     private LocalDateTime created;
     private boolean done;
 
-    public Note(int id, String content, LocalDateTime created, boolean done) {
+    public Note() {
+    }
+
+    public Note(Integer id, String content, LocalDateTime created, boolean done) {
         super(id);
         this.content = content;
         this.created = created;
