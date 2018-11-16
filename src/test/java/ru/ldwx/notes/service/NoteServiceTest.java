@@ -9,6 +9,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ru.ldwx.notes.model.Note;
+import ru.ldwx.notes.util.exception.NotFoundException;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -37,9 +38,19 @@ public class NoteServiceTest {
         Assert.assertEquals(1, service.getAll().size());
     }
 
+    @Test(expected = NotFoundException.class)
+    public void deleteNotFoundException() {
+        service.get(1);
+    }
+
     @Test
     public void get() {
         assertMatch(NOTE1, service.get(NOTE1_ID));
+    }
+
+    @Test(expected = NotFoundException.class)
+    public void getNotFoundException() {
+        service.get(1);
     }
 
     @Test
