@@ -7,6 +7,8 @@ import ru.ldwx.notes.repository.NoteRepository;
 
 import java.util.Collection;
 
+import static ru.ldwx.notes.util.ValidationUtil.checkNotFound;
+
 @Service
 public class NoteServiceImpl implements NoteService {
 
@@ -23,13 +25,13 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public boolean delete(int id) {
-        return repository.delete(id);
+    public void delete(int id) {
+        checkNotFound(repository.delete(id), "id = " + id);
     }
 
     @Override
     public Note get(int id) {
-        return repository.get(id);
+        return checkNotFound(repository.get(id), "id = " + id);
     }
 
     @Override
