@@ -7,7 +7,7 @@ import java.util.Collection;
 public interface NoteService {
     Note save(Note note);
 
-    boolean delete(int id);
+    void delete(int id);
 
     Note get(int id);
 
