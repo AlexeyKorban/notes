@@ -8,8 +8,12 @@ import java.util.Collection;
 
 @Repository
 public class NoteRepositoryImpl implements NoteRepository{
+    private final CrudNoteRepository repository;
+
     @Autowired
-    private CrudNoteRepository repository;
+    public NoteRepositoryImpl(CrudNoteRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public Note save(Note note) {
