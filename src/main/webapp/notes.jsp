@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Alexey.Korban
@@ -23,11 +24,15 @@
     </thead>
     <c:forEach items="${notes}" var="note">
         <jsp:useBean id="note" scope="page" type="ru.ldwx.notes.model.Note"/>
+        <tr>
             <td>${note.content}</td>
-        <td>
-                ${note.created.toLocalDate()} ${note.created.toLocalTime()}
-        </td>
-        <td>${note.done}</td>
+            <td>
+                    ${note.created.toLocalDate()} ${note.created.toLocalTime()}
+            </td>
+            <td>${note.done}</td>
+            <td></td>
+            <td></td>
+        </tr>
     </c:forEach>
 </table>
 
