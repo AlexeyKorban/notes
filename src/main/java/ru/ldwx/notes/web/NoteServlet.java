@@ -18,13 +18,20 @@ public class NoteServlet extends HttpServlet {
     private static final Logger log = getLogger(NoteServlet.class);
 
     private NoteService service;
+    private ConfigurableApplicationContext springContext;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        ConfigurableApplicationContext springContext = new ClassPathXmlApplicationContext(new String[]{"spring/spring-app.xml", "spring/spring-db.xml"}, false);
+        springContext = new ClassPathXmlApplicationContext(new String[]{"spring/spring-app.xml", "spring/spring-db.xml"}, false);
         springContext.refresh();
         service = springContext.getBean(NoteService.class);
+    }
+
+    @Override
+    public void destroy() {
+        springContext.close();
+        super.destroy();
     }
 
     @Override
