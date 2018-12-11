@@ -14,6 +14,10 @@ public class Note extends AbstractBaseEntity{
     public Note() {
     }
 
+    public Note(Note note) {
+        this(note.getId(), note.getContent(), note.getCreated(), note.isDone());
+    }
+
     public Note(Integer id, String content, LocalDateTime created, boolean done) {
         super(id);
         this.content = content;

@@ -57,4 +57,12 @@ public class NoteServiceTest {
     public void getAll() {
         assertMatch(Arrays.asList(NOTE1, NOTE2), service.getAll());
     }
+
+    @Test
+    public void update() {
+        Note updated = new Note(NOTE1);
+        updated.setDone(true);
+        service.save(updated);
+        assertMatch(updated, service.get(NOTE1_ID));
+    }
 }
